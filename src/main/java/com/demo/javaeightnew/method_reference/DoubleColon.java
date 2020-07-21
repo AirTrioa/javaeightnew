@@ -1,6 +1,7 @@
 package com.demo.javaeightnew.method_reference;
 
-import com.demo.javaeightnew.lambda.functional_interface.FuncInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.function.BiFunction;
 
@@ -11,18 +12,20 @@ import java.util.function.BiFunction;
  * @since 2020/7/19
  */
 public class DoubleColon {
+  private static final Logger logger = LoggerFactory.getLogger(DoubleColon.class);
+
   /**
    * 双冒号调用静态方法，创建函数接口
    */
-  private static void testStaticFunc(){
+  private static void testStaticFunc() {
     BiFunction<String, Object, Boolean> function = String::equals;
     Boolean xyz = function.apply("xyz", "123");
-    System.out.println(xyz);
+    logger.info("[{}]", xyz);
     Boolean apply = function.apply("xyz", "xyz");
-    System.out.println(apply);
+    logger.info("[{}]", apply);
   }
 
-  private static void testMemberFunc(){
+  private static void testMemberFunc() {
 
   }
 
