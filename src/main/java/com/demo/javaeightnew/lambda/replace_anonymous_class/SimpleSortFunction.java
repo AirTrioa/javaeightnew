@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class SimpleSortFunction {
   private static final Logger logger = LoggerFactory.getLogger(SimpleSortFunction.class);
-  private static final List<SortEntity> SORT_ENTITIES = new ArrayList<>();
+  public static final List<SortEntity> SORT_ENTITIES = new ArrayList<>();
 
   // 初始化部分数据
   static {
