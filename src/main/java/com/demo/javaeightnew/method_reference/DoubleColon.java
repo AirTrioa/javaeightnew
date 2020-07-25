@@ -1,6 +1,5 @@
 package com.demo.javaeightnew.method_reference;
 
-import com.demo.javaeightnew.lambda.functional_interface.FuncInterface;
 import com.demo.javaeightnew.lambda.replace_anonymous_class.SimpleSortFunction;
 import com.demo.javaeightnew.lambda.replace_anonymous_class.SortEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * 方法引用- 双冒号
@@ -25,9 +25,9 @@ public class DoubleColon {
   private static void testStaticFunc() {
 
     // 使用StringUtils的判断空方法，实现自定义的接口
-    FuncInterface<CharSequence, Boolean> isNotBlank = StringUtils::isNotBlank;
-    logger.info(isNotBlank.convertToStr("123").toString());
-    logger.info(isNotBlank.convertToStr("").toString());
+    Function<CharSequence, Boolean> isNotBlank = StringUtils::isNotBlank;
+    logger.info(isNotBlank.apply("123").toString());
+    logger.info(isNotBlank.apply("").toString());
 
     // 调用静态方法引用,打印部分参数
     List<SortEntity> sortEntities = SimpleSortFunction.SORT_ENTITIES;
@@ -45,10 +45,19 @@ public class DoubleColon {
     logger.info("[{}]", apply);
   }
 
+  /**
+   * 双冒号调用构造方法
+   */
+  private static void testCreatorFunc(){
+    BiFunction<String, Integer, UserEntity> creator = UserEntity::new;
+    UserEntity entity = creator.apply("郑培", 23);
+    logger.info("{}",entity);
+  }
+
 
   public static void main(String[] args) {
-    testStaticFunc();
-
-
+//    testStaticFunc();
+//    testMemberFunc();
+    testCreatorFunc();
   }
 }
