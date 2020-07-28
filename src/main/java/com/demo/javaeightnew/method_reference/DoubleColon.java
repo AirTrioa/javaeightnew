@@ -3,6 +3,7 @@ package com.demo.javaeightnew.method_reference;
 import com.demo.javaeightnew.lambda.replace_anonymous_class.SimpleSortFunction;
 import com.demo.javaeightnew.lambda.replace_anonymous_class.SortEntity;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,7 @@ public class DoubleColon {
    */
   private static void testStaticFunc() {
 
-    // 使用StringUtils的判断空方法，实现自定义的接口
+    // 使用StringUtils的判断空方法
     Function<CharSequence, Boolean> isNotBlank = StringUtils::isNotBlank;
     logger.info(isNotBlank.apply("123").toString());
     logger.info(isNotBlank.apply("").toString());
@@ -43,6 +44,10 @@ public class DoubleColon {
     logger.info("[{}]", xyz);
     Boolean apply = function.apply("xyz", "xyz");
     logger.info("[{}]", apply);
+
+    // 调用工厂类的生产方法
+    UserEntityFactory<UserEntity> factory = UserEntity::new;
+    factory.produce(System.currentTimeMillis(),"郑培",24);
   }
 
   /**
